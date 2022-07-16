@@ -1,0 +1,70 @@
+<div class="registration-page-wrapper">
+  <form
+    class="registration-form"
+    autocomplete="off"
+    *ngIf="registrationFrom"
+    [formGroup]="registrationFrom"
+    (ngSubmit)="submitRegistrationForm()"
+  >
+    <h1>Register:</h1>
+
+    <app-input
+      formControlName="name"
+      fieldName="name"
+      label="Name"
+      [parentForm]="registrationFrom"
+    ></app-input>
+
+    <app-input
+      formControlName="email"
+      fieldName="email"
+      label="Email"
+      [parentForm]="registrationFrom"
+    ></app-input>
+
+    <app-input-password
+      formControlName="password"
+      fieldName="password"
+      label="Password"
+      [parentForm]="registrationFrom"
+    >
+    </app-input-password>
+
+    <div class="form-row">
+      <label class="form-label" for="favouriteHexCode">
+        <span> Favourite hex colour </span>
+      </label>
+
+      <div class="input-with-button-wrapper">
+        <input
+          class="form-element"
+          type="text"
+          name="favouriteHexCode"
+          id="favouriteHexCode"
+          maxlength="7"
+          formControlName="favouriteHexCode"
+        />
+
+        <div
+          class="hex-colour-display"
+          [ngStyle]="{
+            background:
+              favouriteHexCodeValue !== ''
+                ? favouriteHexCodeValue
+                : 'transparent'
+          }"
+        ></div>
+      </div>
+    </div>
+
+    <div class="button-row">
+      <button
+        class="button-success"
+        type="submit"
+        [disabled]="registrationFrom?.invalid"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
